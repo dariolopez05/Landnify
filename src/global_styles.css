@@ -114,6 +114,7 @@ body {
   .scroll-indicator {
     @apply left-1/2 transform -translate-x-1/2;
     margin-left: 0;
+    left: 46%;
   }
 }
 
