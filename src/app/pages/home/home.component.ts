@@ -8,7 +8,7 @@ import { RouterModule } from '@angular/router';
   imports: [CommonModule, RouterModule],
   template: `
     <!-- Hero Section -->
-    <section class="relative min-h-[90vh] flex items-center justify-center hero-bg overflow-hidden">
+    <section class="relative min-h-[60vh] md:min-h-[90vh] flex items-center justify-center hero-bg overflow-hidden">
       <!-- Background elements -->
       <div class="absolute inset-0 -z-10">
         <div class="absolute top-20 left-10 w-72 h-72 bg-violet-500/20 rounded-full filter blur-3xl"></div>
