@@ -109,10 +109,6 @@ import { HttpClient } from '@angular/common/http';
                       <option value="">Selecciona el tipo de proyecto</option>
                       <option value="landing-basica">Landing Page Básica</option>
                       <option value="landing-pro">Landing Page Pro</option>
-                      <option value="web-corporativa">Web Corporativa</option>
-                      <option value="ecommerce">E-commerce</option>
-                      <option value="mantenimiento">Solo Mantenimiento</option>
-                      <option value="otro">Otro</option>
                     </select>
                   </div>
 
@@ -307,7 +303,7 @@ export class ContactComponent implements OnInit {
       this.isSubmitting = true;
       
       const formData = this.contactForm.value;
-      const webhookUrl = 'https://n8n-n8n.lcm1s3.easypanel.host/webhook-test/24426b3e-34b8-4e98-8bba-10329ec966b2';
+      const webhookUrl = 'https://n8n-n8n.lcm1s3.easypanel.host/webhook-test/24426b3e-34b8-4e98-8bba-10329ec966b2'; // Cambiar por la de producción cuando este acabado
 
       this.http.post(webhookUrl, formData).subscribe({
         next: (response) => {

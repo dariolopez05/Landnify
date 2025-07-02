@@ -33,22 +33,6 @@ interface Project {
         </div>
       </section>
 
-      <!-- Filter Section -->
-      <section class="py-8 bg-slate-900/50" #filterSection>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="flex flex-wrap justify-center gap-4 animate-on-scroll">
-            <button
-              *ngFor="let category of categories; trackBy: trackByCategory"
-              (click)="filterProjects(category)"
-              [class.active]="selectedCategory === category"
-              class="filter-btn px-6 py-2 rounded-full border border-slate-600 text-gray-300 hover:border-violet-500 hover:text-violet-400 transition-all duration-300"
-            >
-              {{ category }}
-            </button>
-          </div>
-        </div>
-      </section>
-
       <!-- Projects Grid -->
       <section class="py-16" #projectsSection>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -190,7 +174,7 @@ interface Project {
       </div>
 
       <!-- CTA Section -->
-      <section class="py-16 bg-slate-900/50">
+      <section class="py-16 bg-slate-900/50" #ctaSection>
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center animate-on-scroll">
           <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
             ¿Te gusta lo que ves? <span class="gradient-text">Creemos el tuyo</span>
@@ -231,11 +215,10 @@ interface Project {
 export class ProjectsComponent implements OnInit, AfterViewInit {
   @ViewChild('filterSection', { static: false }) filterSection!: ElementRef;
   @ViewChild('projectsSection', { static: false }) projectsSection!: ElementRef;
+  @ViewChild('ctaSection', { static: false }) ctaSection!: ElementRef;
 
-  selectedCategory = 'Todos';
   selectedProject: Project | null = null;
 
-  categories = ['Todos', 'Servicios', 'E-commerce', 'Profesionales', 'Restaurantes'];
 
   projects: Project[] = [
     {
@@ -299,20 +282,10 @@ export class ProjectsComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     // Initialize with all projects
     this.filteredProjects = [...this.projects];
-    this.filterProjects('Todos');
   }
 
   ngAfterViewInit(): void {
     this.setupScrollAnimations();
-  }
-
-  filterProjects(category: string): void {
-    this.selectedCategory = category;
-    if (category === 'Todos') {
-      this.filteredProjects = [...this.projects];
-    } else {
-      this.filteredProjects = this.projects.filter(project => project.category === category);
-    }
   }
 
   openProject(project: Project): void {
@@ -353,5 +326,6 @@ export class ProjectsComponent implements OnInit, AfterViewInit {
     // Observe sections
     if (this.filterSection) observer.observe(this.filterSection.nativeElement);
     if (this.projectsSection) observer.observe(this.projectsSection.nativeElement);
+    if (this.ctaSection) observer.observe(this.ctaSection.nativeElement);
   }
 }
