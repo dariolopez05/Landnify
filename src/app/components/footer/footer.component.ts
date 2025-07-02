@@ -13,10 +13,7 @@ import { RouterModule } from '@angular/router';
           <!-- Logo and Description -->
           <div class="col-span-1 md:col-span-2">
             <div class="flex items-center space-x-2 mb-4">
-              <div class="w-8 h-8 bg-gradient-to-r from-violet-500 to-purple-500 rounded-lg flex items-center justify-center">
-                <span class="text-white font-bold text-lg">L</span>
-              </div>
-              <span class="text-xl font-bold gradient-text">Landnify</span>
+              <img class="logo" src="assets/images/logo.png" alt="Logo Landnify">
             </div>
             <p class="text-gray-400 mb-6 max-w-md">
               Landnify diseña landing pages profesionales para negocios y profesionales. 
@@ -97,6 +94,12 @@ import { RouterModule } from '@angular/router';
         </div>
       </div>
     </footer>
-  `
+  `,
+  styles: [`
+    .logo {
+      width: 150px;
+      height: auto;
+    }
+  `]
 })
 export class FooterComponent {}

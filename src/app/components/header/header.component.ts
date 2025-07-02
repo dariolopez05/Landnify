@@ -12,10 +12,7 @@ import { RouterModule } from '@angular/router';
         <div class="flex justify-between items-center py-4">
           <!-- Logo -->
           <a routerLink="/" class="flex items-center space-x-2 group">
-            <div class="w-8 h-8 bg-gradient-to-r from-violet-500 to-purple-500 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-              <span class="text-white font-bold text-lg">L</span>
-            </div>
-            <span class="text-xl font-bold gradient-text">Landnify</span>
+              <img class="logo" src="assets/images/logo.png" alt="Logo Landnify">
           </a>
 
           <!-- Desktop Navigation -->
@@ -135,6 +132,11 @@ import { RouterModule } from '@angular/router';
       background: linear-gradient(to right, #8b5cf6, #a855f7);
       border-radius: 1px;
       opacity: 0.5;
+    }
+
+    .logo {
+      width: 150px;
+      height: auto;
     }
   `]
 })

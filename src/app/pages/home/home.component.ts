@@ -8,7 +8,7 @@ import { RouterModule } from '@angular/router';
   imports: [CommonModule, RouterModule],
   template: `
     <!-- Hero Section -->
-    <section class="relative min-h-[65vh] md:min-h-[90vh] flex items-center justify-center hero-bg overflow-hidden">
+    <section class="relative min-h-[70vh] md:min-h-[90vh] flex items-center justify-center hero-bg overflow-hidden">
       <!-- Background elements -->
       <div class="absolute inset-0 -z-10">
         <div class="absolute top-20 left-10 w-72 h-72 bg-violet-500/20 rounded-full filter blur-3xl"></div>
@@ -39,8 +39,21 @@ import { RouterModule } from '@angular/router';
         <div class="scroll-indicator">
           <div class="w-6 h-10 border-2 border-violet-400 rounded-full flex justify-center">
             <div class="w-1 h-3 bg-violet-400 rounded-full mt-2 animate-pulse"></div>
-          </div>
+          </div>         
         </div>
+          <!-- Flecha animada solo visible en móviles -->
+            <div class="mt-10 sm:hidden flex justify-center">
+              <svg
+                class="w-6 h-6 text-violet-400 animate-bounce"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+              </svg>
+            </div>
+
       </div>
     </section>
 
