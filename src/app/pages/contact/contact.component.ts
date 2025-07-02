@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, AbstractControl } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -280,42 +280,47 @@ export class ContactComponent implements OnInit {
       name: ['', [Validators.required, Validators.minLength(2)]],
       empresa: [''],
       email: ['', [Validators.required, Validators.email]],
-      whatsapp: [''],
-      proyecto: [''],
-      message: ['', [Validators.required, Validators.minLength(10)]]
+      whatsapp: ['', [this.phoneValidator]],
+      proyecto: ['', [this.projectValidator]],
+      message: ['', [Validators.required]]
     });
   }
 
-  ngOnInit(): void {
-    // Component initialization
+  ngOnInit(): void {}
+
+  phoneValidator(control: AbstractControl) {
+    if (!control.value) return null;
+
+    const cleaned = control.value.replace(/\s+/g, '');
+    const regex = /^(?:\+34)?[67]\d{8}$/;
+
+    return regex.test(cleaned) ? null : { invalidPhone: true };
+  }
+
+  projectValidator(control: AbstractControl) {
+    return control.value && control.value !== '' ? null : { required: true };
   }
 
   onSubmit(): void {
-    // Reset previous states
     this.showValidationErrors = false;
     this.submitSuccess = false;
     this.submitError = false;
 
-    // Mark all fields as touched to show validation errors
     this.contactForm.markAllAsTouched();
 
     if (this.contactForm.valid) {
       this.isSubmitting = true;
-      
       const formData = this.contactForm.value;
-      const webhookUrl = 'https://n8n-n8n.lcm1s3.easypanel.host/webhook-test/24426b3e-34b8-4e98-8bba-10329ec966b2'; // Cambiar por la de producción cuando este acabado
+      const webhookUrl = 'https://n8n-n8n.lcm1s3.easypanel.host/webhook/24426b3e-34b8-4e98-8bba-10329ec966b2';
 
       this.http.post(webhookUrl, formData).subscribe({
-        next: (response) => {
+        next: () => {
           this.isSubmitting = false;
           this.submitSuccess = true;
           this.contactForm.reset();
-          // Scroll to success message
           setTimeout(() => {
             const successElement = document.querySelector('.bg-green-900\\/50');
-            if (successElement) {
-              successElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }
+            if (successElement) successElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
           }, 100);
         },
         error: (error) => {
@@ -325,14 +330,9 @@ export class ContactComponent implements OnInit {
         }
       });
     } else {
-      // Show validation errors summary
       this.showValidationErrors = true;
-      
-      // Scroll to first invalid field
-      const firstInvalidField = document.querySelector('.border-red-500');
-      if (firstInvalidField) {
-        firstInvalidField.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }
+      const firstInvalid = document.querySelector('.border-red-500');
+      if (firstInvalid) firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
   }
 }
