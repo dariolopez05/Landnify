@@ -86,6 +86,61 @@ export const routes: Routes = [
       }
     }
   },
+
+  // 👇 NUEVAS RUTAS LEGALES
+
+  {
+    path: 'aviso-legal',
+    loadComponent: () => import('./pages/aviso-legal/aviso-legal.component').then(c => c.AvisoLegalComponent),
+    title: 'Aviso legal – Landnify',
+    data: {
+      meta: {
+        description: 'Consulta el aviso legal de Landnify, titularidad de Darío López Garrido, responsable del sitio web landnify.com.',
+        keywords: 'aviso legal, titular web, condiciones uso',
+        og: {
+          title: 'Aviso legal – Landnify',
+          description: 'Consulta el aviso legal de Landnify, titularidad de Darío López Garrido, responsable del sitio web landnify.com.',
+          image: 'https://landnify.com/og-legal.jpg',
+          url: 'https://landnify.com/aviso-legal'
+        }
+      }
+    }
+  },
+  {
+    path: 'politica-privacidad',
+    loadComponent: () => import('./pages/politica-privacidad/politica-privacidad.component').then(c => c.PoliticaPrivacidadComponent),
+    title: 'Política de privacidad – Landnify',
+    data: {
+      meta: {
+        description: 'Lee cómo Landnify trata tus datos personales, en cumplimiento con la normativa de protección de datos (RGPD).',
+        keywords: 'privacidad datos, RGPD, política de privacidad',
+        og: {
+          title: 'Política de privacidad – Landnify',
+          description: 'Lee cómo Landnify trata tus datos personales, en cumplimiento con la normativa de protección de datos (RGPD).',
+          image: 'https://landnify.com/og-privacidad.jpg',
+          url: 'https://landnify.com/politica-privacidad'
+        }
+      }
+    }
+  },
+  {
+    path: 'politica-cookies',
+    loadComponent: () => import('./pages/politica-cookies/politica-cookies.component').then(c => c.PoliticaCookiesComponent),
+    title: 'Política de cookies – Landnify',
+    data: {
+      meta: {
+        description: 'Información sobre el uso de cookies en Landnify: Google Fonts, Analytics y WhatsApp. Aprende cómo gestionarlas.',
+        keywords: 'cookies, política de cookies, google analytics, consentimiento cookies',
+        og: {
+          title: 'Política de cookies – Landnify',
+          description: 'Información sobre el uso de cookies en Landnify: Google Fonts, Analytics y WhatsApp. Aprende cómo gestionarlas.',
+          image: 'https://landnify.com/og-cookies.jpg',
+          url: 'https://landnify.com/politica-cookies'
+        }
+      }
+    }
+  },
+
   {
     path: '**',
     redirectTo: ''

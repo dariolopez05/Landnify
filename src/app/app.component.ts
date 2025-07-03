@@ -5,16 +5,18 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { SeoService } from './services/seo.service';
 import { filter } from 'rxjs/operators';
+import { CookieBannerComponent } from './components/cookie/cookie-banner.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, HeaderComponent, FooterComponent],
+  imports: [CommonModule, RouterOutlet, HeaderComponent, FooterComponent, CookieBannerComponent],
   template: `
     <div class="min-h-screen bg-slate-900 relative">
       <app-header></app-header>
       <main class="page-content">
         <router-outlet></router-outlet>
+        <app-cookie-banner />
       </main>
       <app-footer></app-footer>
     </div>
