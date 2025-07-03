@@ -138,6 +138,10 @@ import { HttpClient } from '@angular/common/http';
                       </svg>
                       <span class="text-red-300">Por favor, completa todos los campos obligatorios correctamente.</span>
                     </div>
+
+                    <ul *ngIf="validationErrorMessage" class="text-red-300 text-sm mt-3 list-disc list-inside ml-7">
+                      <li *ngFor="let campo of validationErrorMessage.split(', ')">{{ campo }}</li>
+                    </ul>
                   </div>
 
                   <button
@@ -274,6 +278,8 @@ export class ContactComponent implements OnInit {
   submitSuccess = false;
   submitError = false;
   showValidationErrors = false;
+  validationErrorMessage = '';
+
 
   constructor(private fb: FormBuilder, private http: HttpClient) {
     this.contactForm = this.fb.group({
@@ -301,17 +307,18 @@ export class ContactComponent implements OnInit {
     return control.value && control.value !== '' ? null : { required: true };
   }
 
-  onSubmit(): void {
+onSubmit(): void {
     this.showValidationErrors = false;
     this.submitSuccess = false;
     this.submitError = false;
+    this.validationErrorMessage = '';
 
     this.contactForm.markAllAsTouched();
 
     if (this.contactForm.valid) {
       this.isSubmitting = true;
       const formData = this.contactForm.value;
-      const webhookUrl = 'https://n8n-n8n.lcm1s3.easypanel.host/webhook-test/24426b3e-34b8-4e98-8bba-10329ec966b2';
+      const webhookUrl = 'https://n8n-n8n.lcm1s3.easypanel.host/webhook/24426b3e-34b8-4e98-8bba-10329ec966b2';
 
       this.http.post(webhookUrl, formData).subscribe({
         next: () => {
@@ -331,6 +338,18 @@ export class ContactComponent implements OnInit {
       });
     } else {
       this.showValidationErrors = true;
+
+      const errors: string[] = [];
+      const controls = this.contactForm.controls;
+
+      if (controls['name'].errors) errors.push('nombre');
+      if (controls['email'].errors) errors.push('email');
+      if (controls['whatsapp'].errors) errors.push('WhatsApp');
+      if (controls['proyecto'].errors) errors.push('tipo de proyecto');
+      if (controls['message'].errors) errors.push('mensaje');
+
+      this.validationErrorMessage = `Hay errores en los siguientes campos: ${errors.join(', ')}`;
+
       const firstInvalid = document.querySelector('.border-red-500');
       if (firstInvalid) firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
