@@ -311,7 +311,7 @@ export class ContactComponent implements OnInit {
     if (this.contactForm.valid) {
       this.isSubmitting = true;
       const formData = this.contactForm.value;
-      const webhookUrl = 'https://n8n-n8n.lcm1s3.easypanel.host/webhook/24426b3e-34b8-4e98-8bba-10329ec966b2';
+      const webhookUrl = 'https://n8n-n8n.lcm1s3.easypanel.host/webhook-test/24426b3e-34b8-4e98-8bba-10329ec966b2';
 
       this.http.post(webhookUrl, formData).subscribe({
         next: () => {
