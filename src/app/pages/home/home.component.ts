@@ -29,8 +29,8 @@ import { RouterModule } from '@angular/router';
               Precios desde 249€
             </a>
 
-            <a routerLink="/proyectos" class="btn-secondary text-lg px-8 py-4">
-              Ver ejemplos
+            <a routerLink="/contacto" class="btn-secondary text-lg px-8 py-4">
+              Contacta con nosotros
             </a>
           </div>
         </div>

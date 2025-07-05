@@ -79,7 +79,7 @@ import { RouterModule } from '@angular/router';
         <!-- Bottom Section -->
         <div class="border-t border-slate-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p class="text-gray-500 text-sm">
-            © 2024 Landnify. Todos los derechos reservados.
+            © 2025 Landnify. Todos los derechos reservados.
           </p>
           <div class="flex space-x-6 mt-4 md:mt-0">
             <a routerLink="/politica-privacidad" class="text-gray-500 hover:text-violet-400 text-sm transition-colors duration-300">
